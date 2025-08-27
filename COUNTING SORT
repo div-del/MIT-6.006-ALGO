@@ -36,3 +36,4 @@ for i in range(len(A)-1,-1,-1):
     #print(C1[k])
     C1[k]-=1
     print(C1)
+
