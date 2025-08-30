@@ -1,0 +1,39 @@
+A=[]
+n=int(input("enter size of list "))
+for i in range(n):
+    k=int(input("enter element "))
+    A+=[k,]
+###############doing C-counting list
+C=[]
+M=max(A)
+D={}
+for i in range(0,M+1):
+    D[i]=A.count(i)
+C=list(D.values())
+print(C)
+###############cummulative C
+C1=[]
+for i in range(len(C)):
+    C1+=[0,]
+    
+for i in range(len(C)):
+    S=0
+    for j in range(i+1):
+        S+=C[j]
+    C1[i]=S
+print(C1)
+##################building output
+print()
+B=[]
+for i in range(len(A)):
+    B+=[0,]
+for i in range(len(A)-1,-1,-1):
+    k=A[i]
+    main=C1[k]
+    pos=main-1
+    B[pos]=k
+    print(B)
+    #print(C1[k])
+    C1[k]-=1
+    print(C1)
+
