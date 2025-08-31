@@ -4,10 +4,10 @@ class Node:
         self.left=None
         self.right=None
 class BST:
-    def__init__(self):
+    def __init__(self):
         self.root=None
     def insert(self,value):
-        if self.root=None:
+        if self.root==None:
             self.root=Node(value)
         else:
             self.ins_rep(self.root,value)
