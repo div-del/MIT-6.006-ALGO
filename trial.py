@@ -9,29 +9,6 @@ def create_graph(vertices, edges):
     print(graph)
     return graph
     
-
-def dfs(graph, start):
-    parent = {}
-    k=[]
-    visited = set()
-    stack = [start]
-    
-    visited.add(start)
-    while stack:
-        vertex = stack.pop()
-        #print("before ",queue)
-        print(vertex, end=" ")
-        ##if vertex==end:
-          #  break
-        K=graph[vertex][::-1]
-        for neighbor in K:
-            #print("neighbor ", neighbor)
-            if neighbor not in visited:
-                ###parent[neighbor]=vertex
-                
-                visited.add(neighbor)
-                stack.append(neighbor)
-                #print("after ",queue)
 def topological_sort_util(graph, vertex, visited, stack):
     visited.add(vertex)
     for neighbor in graph[vertex]:
@@ -54,30 +31,22 @@ def topological_sort(graph):
             topological_sort_util(graph, vertex, visited, stack)
     k=stack[::-1]
     return k
-def DAG(graph, stack):
+def DAG(graph, stack, start_vertex):
+    # Step 1: Initialize distances
+    distances = {vertex: float('inf') for vertex in graph}
+    distances[start_vertex] = 0
+
+    # Step 2: Iterate through vertices in topological order
     for vertex in stack:
-        for neighbor in graph[vertex]:
-            j=neighbor[0]
-            if stack.index(j)>stack.index(vertex):
-                d=stack.index(vertex)
-            print(d,vertex,"->",j)
-                
+        # Step 3: Relax all outgoing edges
+        # The 'if' is a crucial check to avoid relaxing from an unreachable vertex
+        if distances[vertex] != float('inf'):
+            for neighbor, weight in graph[vertex]:
+                if distances[vertex] + weight < distances[neighbor]:
+                    distances[neighbor] = distances[vertex] + weight
+                    
+    return distances
 
-
-    
-    
-
-# Example usage
-#vertices = ['A', 'B', 'C', 'D', 'E', 'F']
-#edges = [('A', 'B'), ('A', 'C'), ('B', 'D'), ('B', 'E'), ('C', 'F'), ('E', 'F')]
-               
-
-
-
-#graph = create_graph(vertices, edges)
-
-#print("DFS from  A :")
-#dfs(graph, 'A')
 
 print()
 graph = {
@@ -89,4 +58,5 @@ graph = {
 }
 k=topological_sort(graph)
 print("Topological Sort: ", k)
-DAG(graph, k)
+min_path=DAG(graph, k, "A")
+print("Minimum path from source A: ", min_path)
