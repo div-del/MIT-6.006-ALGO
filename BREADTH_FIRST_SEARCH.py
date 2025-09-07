@@ -1,3 +1,4 @@
+
 def create_graph(vertices, edges):
     graph = {}
     for vertex in vertices:
@@ -53,6 +54,3 @@ graph = create_graph(vertices, edges)
 
 print("BFS from  A to F:")
 bfs(graph, 'A', 'F')
-
-
-
