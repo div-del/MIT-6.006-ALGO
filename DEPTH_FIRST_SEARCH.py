@@ -12,6 +12,7 @@ def create_graph(vertices, edges):
 
 def dfs(graph, start):
     parent = {}
+    k=[]
     visited = set()
     stack = [start]
     
@@ -31,6 +32,7 @@ def dfs(graph, start):
                 visited.add(neighbor)
                 stack.append(neighbor)
                 #print("after ",queue)
+    
     
 
 # Example usage

@@ -32,6 +32,7 @@ def topological_sort(graph):
     k=stack[::-1]
     return k
 def DAG(graph, stack, start_vertex):
+
     # Step 1: Initialize distances
     distances = {vertex: float('inf') for vertex in graph}
     distances[start_vertex] = 0

@@ -30,9 +30,13 @@ def dfs(graph, start):
         else:
             current_set = blue
             neighbor_set = red
+
+
         
         
         for neighbor in graph[vertex]:
+            
+        
             if neighbor not in visited:
                 visited.add(neighbor)
                 neighbor_set.add(neighbor)
@@ -43,6 +47,7 @@ def dfs(graph, start):
                     break
         if not is_bipartite:
             break
+        
     
     if is_bipartite:
         print("Bipartite")

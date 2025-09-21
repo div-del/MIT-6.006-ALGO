@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sorting Visualizer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .array-container {
+            display: flex;
+            align-items: flex-end;
+            gap: 2px;
+            min-height: 300px;
+        }
+        /* Custom class for highlighting a bar */
+        .array-bar.highlight {
+            background-color: #fca5a5;
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-gray-100 flex flex-col items-center p-4">
+
+    <div class="container bg-gray-800 p-6 rounded-xl shadow-lg w-full max-w-4xl">
+        <h1 class="text-3xl font-bold text-center mb-6">Sorting Visualizer</h1>
+
+        <div id="array-container" class="array-container bg-gray-700 rounded-lg p-2 overflow-x-auto">
+        </div>
+
+        <div class="controls mt-8 flex flex-wrap justify-center gap-4">
+            <button id="generateBtn" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-full shadow-lg transition-transform duration-200 transform hover:scale-105">
+                Generate New Array
+            </button>
+            <button id="sortBtn" class="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-6 rounded-full shadow-lg transition-transform duration-200 transform hover:scale-105">
+                Start Merge Sort
+            </button>
+        </div>
+    </div>
+
+    <script>
+        const arrayContainer = document.getElementById('array-container');
+        const generateBtn = document.getElementById('generateBtn');
+        const sortBtn = document.getElementById('sortBtn');
+
+        let array = [];
+        const ARRAY_SIZE = 50;
+
+        function generateNewArray() {
+            arrayContainer.innerHTML = '';
+            array = [];
+            for (let i = 0; i < ARRAY_SIZE; i++) {
+                const randomNumber = Math.floor(Math.random() * (300 - 5 + 1)) + 5;
+                array.push(randomNumber);
+            }
+            array.forEach(value => {
+                const bar = document.createElement('div');
+                bar.classList.add('array-bar', 'bg-gray-400', 'rounded');
+                bar.style.height = `${value}px`;
+                const barWidth = 100 / ARRAY_SIZE;
+                bar.style.width = `${barWidth}%`;
+                arrayContainer.appendChild(bar);
+            });
+        }
+
+        // This is where you will add a function to read the steps from your Python script
+        function visualizeMergeSort(steps) {
+            // Your visualization logic will go here
+            console.log("Your Python code has generated these steps:", steps);
+            // This is where you would iterate through the steps and animate the bars.
+        }
+
+        generateBtn.addEventListener('click', generateNewArray);
+        sortBtn.addEventListener('click', () => {
+            // We're simulating getting the steps from your Python script.
+            // You will replace this with the actual steps from your Python file.
+            const sampleSteps = [
+                // Example steps: ('compare', 0, 1), ('swap', 0, 1), etc.
+            ];
+            visualizeMergeSort(sampleSteps);
+        });
+
+        window.onload = generateNewArray;
+    </script>
+</body>
+</html>

@@ -31,6 +31,7 @@ for i in L1:
     o=(i//10)%10
     if o in D:
         D[o].append(i)
+        
     else:
         D[o]=[i,]
 
